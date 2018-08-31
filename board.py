@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import NamedTuple
+from typing import List, NamedTuple, Union
 
 
 class Colours(NamedTuple):
@@ -19,3 +19,7 @@ class Piece:
 
     def __repr__(self) -> str:
         return self.symbol
+
+
+class Board:
+    mailbox: List[List[Union[Piece, None]]] = [[None] * 8] * 8

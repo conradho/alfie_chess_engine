@@ -10,3 +10,6 @@ This project runs on python3.7
     - pytest
     - mypy --python-version 3.7 .
     - pytest --cov
+
+### Todo
+- consider having merging pieces/squres, and adding empty/no piece as a type of square/piece
