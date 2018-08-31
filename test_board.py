@@ -11,3 +11,8 @@ def test_board_creation_defaults_to_empty_board() -> None:
     for row in new_board.mailbox:
         for square in row:
             assert square is None
+
+
+def test_board_creation_defaults_to_white_to_move() -> None:
+    new_board = Board()
+    assert new_board.next_move == COLOUR.white
