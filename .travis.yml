@@ -1,5 +1,10 @@
 language: python
 python: 3.7
+
+# tmp fix until travis gets python3.7
+dist: xenial
+sudo: true
+
 install:
   # this is actually automatic, but just adding/keeping for completeness
   - pip install -r requirements.txt
