@@ -2,6 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/conradho/alfie_chess_engine/badge.svg?branch=master)](https://coveralls.io/github/conradho/alfie_chess_engine?branch=master)
 [![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 This project runs on python3.7
 
@@ -13,3 +14,9 @@ This project runs on python3.7
 
 ### Todo
 - consider having merging pieces/squres, and adding empty/no piece as a type of square/piece
+- other board features needed:
+    - repetitions of the position
+    - whether last move was a pawn move (en passant)
+    - can white/black still castle/which way
+    - `no_progress_count` (number of moves since captures/pawn moves)
+- setup pyup.io
