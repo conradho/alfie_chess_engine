@@ -10,7 +10,7 @@ This project runs on python3.7
 - from rootdir
     - pytest
     - mypy --python-version 3.7 --config-file mypy.ini .
-    - pytest --cov=. --cov-config=.coveragerc
+    - pytest --cov=. --cov-config=.coveragerc --cov-fail-under=100
 
 ### Todo
 - consider having merging pieces/squres, and adding empty/no piece as a type of square/piece
