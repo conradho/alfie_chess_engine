@@ -12,6 +12,12 @@ This project runs on python3.7
     - mypy --python-version 3.7 --config-file mypy.ini .
     - pytest --cov=. --cov-config=.coveragerc --cov-fail-under=100
 
+
+### Upgrading to newer libraries
+- `sed 's/==.*//' requirements.txt > requirements-unpinned.txt`
+- `pip install --upgrade -r requirements-unpinned.txt`
+- `pip freeze > requirements.txt`
+
 ### Todo
 - consider having merging pieces/squres, and adding empty/no piece as a type of square/piece
 - other board features needed:
