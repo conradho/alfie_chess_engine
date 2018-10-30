@@ -11,7 +11,4 @@ install:
 script:
   - pytest
   - mypy --python-version 3.7 .
-  - pytest --cov=. --cov-config=.coveragerc
-
-after_success:
-  - coveralls
+  - pytest --cov=. --cov-config=.coveragerc && coveralls
