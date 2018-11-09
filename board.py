@@ -109,6 +109,7 @@ class Board:
             for row in self.mailbox:
                 for square in row:
                     yield square
+            return "FEN position was wrong"
 
         mailbox_squares = generate_mailbox_squares()
 
@@ -119,3 +120,4 @@ class Board:
                         next(mailbox_squares).piece = None
                 else:
                     next(mailbox_squares).piece = getattr(PIECES, char)
+        assert next(mailbox_squares, None) is None, "FEN position was wrong"

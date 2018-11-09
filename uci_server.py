@@ -7,11 +7,13 @@ from pathlib import Path
 
 logging.basicConfig(filename=str(Path("./chess_engine.log").resolve()), level=logging.DEBUG)
 
+HEARTBEAT_FREQUENCY = 5
+
 
 async def heartbeat() -> None:
     while True:
         logging.debug(datetime.datetime.now())
-        await asyncio.sleep(600)
+        await asyncio.sleep(HEARTBEAT_FREQUENCY)
 
 
 async def stop_all_tasks() -> None:

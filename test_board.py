@@ -85,3 +85,10 @@ def test_setup_FEN_position(board: Board) -> None:
 
     board.setup_FEN_position("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1")
     assert board.en_passant == board.get_square_from_coordinate("e3")
+
+
+def test_setup_FEN_position_should_raise_if_invalid(board: Board) -> None:
+    with pytest.raises(Exception, match="FEN position was wrong"):
+        board.setup_FEN_position("8/8/8/8 b KQkq e3 0 1")
+    with pytest.raises(Exception, match="FEN position was wrong"):
+        board.setup_FEN_position("8/8/8/8/8/8/8/8/8/8 b KQkq e3 0 1")
