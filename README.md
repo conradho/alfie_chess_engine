@@ -26,3 +26,9 @@ This project runs on python3.7
     - can white/black still castle/which way
     - `no_progress_count` (number of moves since captures/pawn moves)
 - setup pyup.io
+
+
+### References
+- [python code](https://github.com/thomasahle/sunfish/) interfacing with UCI
+- [UCI protocol](http://wbec-ridderkerk.nl/html/UCIProtocol.html)
+- [FEN notation](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation)
