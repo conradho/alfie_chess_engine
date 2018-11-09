@@ -15,7 +15,7 @@ async def heartbeat() -> None:
 
 
 async def stop_all_tasks() -> None:
-    tasks = [t for t in asyncio.Task.all_tasks() if t is not asyncio.tasks.Task.current_task()]
+    tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]  # type: ignore
     for task in tasks:
         task.cancel()
     await asyncio.wait(tasks, timeout=0.5)
