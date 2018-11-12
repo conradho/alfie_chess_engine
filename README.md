@@ -11,6 +11,7 @@ This project runs on python3.7
     - pytest
     - mypy --python-version 3.7 --config-file mypy.ini .
     - pytest --cov=. --cov-config=.coveragerc --cov-fail-under=100
+- currently also running pytest with `-W ignore::DeprecationWarning` because the tabulate has a deprecation warning
 
 
 ### Upgrading to newer libraries
