@@ -52,7 +52,7 @@ async def setup_server(loop: asyncio.AbstractEventLoop) -> None:
 
 if __name__ == "__main__":  # pragma: no cover
     arguments = docopt(__doc__)
-    log_path = arguments["<logfile>"] if arguments["--log"] else "./chess_engine.log"
+    log_path = str(arguments["<logfile>"]) if arguments["--log"] else "./chess_engine.log"
     # must not log before setting up the config
     logging.basicConfig(filename=str(Path(log_path).resolve()), level=logging.DEBUG)
     logging.debug("starting")
