@@ -11,6 +11,7 @@ import sys
 from pathlib import Path
 
 from docopt import docopt
+from uci_interface import process_line
 
 HEARTBEAT_FREQUENCY = 5
 
@@ -42,6 +43,7 @@ def process_stdin() -> None:
     command = sys.stdin.readline().rstrip("\n")
     if command:
         logging.debug(f"received from stdin: {repr(command)}")
+    process_line(command)
 
 
 async def setup_server(loop: asyncio.AbstractEventLoop) -> None:

@@ -4,8 +4,10 @@ import sys
 import time
 from pathlib import Path
 from tempfile import NamedTemporaryFile
+from unittest.mock import Mock, call, patch
 
 import pytest
+from uci_server import process_stdin
 
 SERVER_FILE = str(Path("./uci_server.py").resolve())
 
@@ -34,6 +36,14 @@ def test_server_has_logging() -> None:
         proc.send_signal(signal.SIGINT)
         time.sleep(1)
         logfile = fp.read().decode("ascii")
-        print(logfile)
+
+        # logging should include startup message, stdin, heartbeat, and stopping message
         for logitem in ["starting", "hilo there", "heartbeat", "stopped"]:
             assert logitem in logfile
+
+
+def test_delegates_to_uci_interface() -> None:
+    with patch("uci_server.process_line") as mock_process_line:
+        with patch("sys.stdin.readline", Mock(return_value="abc\n")):
+            process_stdin()
+            assert mock_process_line.call_args_list == [call("abc")]
