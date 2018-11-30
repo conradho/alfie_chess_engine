@@ -21,20 +21,20 @@ async def heartbeat() -> None:
         await asyncio.sleep(HEARTBEAT_FREQUENCY)
 
 
-async def stop_all_tasks() -> None:
-    tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]  # type: ignore
-    for task in tasks:
-        task.cancel()
-    await asyncio.wait(tasks, timeout=0.5)
-    asyncio.get_event_loop().stop()
-    logging.debug("stopped")
-
-
 def ask_exit() -> None:
     # this is just a synchronous function that puts something onto the loop. we
     # need to cancel the tasks from within the loop because after we cancel, we
-    # want to wait for the tasks to complete before stopping the loop
+    # want to await for the tasks to complete before stopping the loop
     logging.debug("stopping")
+
+    async def stop_all_tasks() -> None:
+        tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]  # type: ignore
+        for task in tasks:
+            task.cancel()
+        await asyncio.wait(tasks, timeout=0.5)
+        asyncio.get_event_loop().stop()
+        logging.debug("stopped")
+
     asyncio.get_event_loop().create_task(stop_all_tasks())
 
 
