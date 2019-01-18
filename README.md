@@ -27,6 +27,7 @@ This project runs on python3.7
     - can white/black still castle/which way
     - `no_progress_count` (number of moves since captures/pawn moves)
 - setup pyup.io
+- engine dies quietly if log path is not writeable
 
 
 ### References

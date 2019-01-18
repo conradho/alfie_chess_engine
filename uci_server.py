@@ -1,3 +1,4 @@
+#!/home/noob/.virtualenvs/Alfie/bin/python
 """
 Usage: uci_server.py [--log <logfile>]
 
@@ -13,12 +14,13 @@ from pathlib import Path
 from docopt import docopt
 from uci_interface import process_line
 
-HEARTBEAT_FREQUENCY = 5
+HEARTBEAT_FREQUENCY = 60
 
 
 async def heartbeat() -> None:
     while True:
         logging.debug(f"heartbeat: {datetime.datetime.now()}")
+        print("info depth 3 seldepth 0", flush=True)
         await asyncio.sleep(HEARTBEAT_FREQUENCY)
 
 
@@ -40,10 +42,16 @@ def ask_exit() -> None:
 
 
 def process_stdin() -> None:
-    command = sys.stdin.readline().rstrip("\n")
+    command = sys.stdin.readline()
+    logging.debug(f"received from stdin: {repr(command)}")
+    command = command.rstrip("\n")
     if command:
-        logging.debug(f"received from stdin: {repr(command)}")
-    process_line(command)
+        if command == "quit":
+            ask_exit()
+        response = process_line(command)
+        if response is not None:
+            logging.debug(f"about to send to stdout: {repr(response)}")
+            print(response, flush=True)
 
 
 async def setup_server(loop: asyncio.AbstractEventLoop) -> None:
